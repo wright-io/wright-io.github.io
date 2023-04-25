@@ -1,5 +1,4 @@
 function play() {
-  part.start(0);
   Tone.Transport.start();
 }
 
