@@ -1,0 +1,85 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Tone.js Basic Libraries</title>
+    <script src="https://unpkg.com/tone"></script>
+  </head>
+  <body>
+    <h1>Tone.js Basic Libraries</h1>
+    <button onclick="play()">Play</button>
+    <button onclick="stop()">Stop</button>
+    <script src="script.js"></script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Bach Cello Suite No. 1 in G Major</title>
+	<script src="https://unpkg.com/tone"></script>
+</head>
+<body>
+  <button onclick="play()">Play</button>
+  <button onclick="stop()">Stop</button>
+	<script>
+    function play() {
+      Tone.Transport.start();
+    }
+
+    function stop() {
+      Tone.Transport.stop();
+    }
+
+		// set up synth and gain
+		const synth = new Tone.Synth().toDestination();
+		const gain = new Tone.Gain(0.5).toDestination();
+		synth.connect(gain);
+
+		// create the sequence using Tone.Part
+		const sequence = new Tone.Part((time, note) => {
+		  synth.triggerAttackRelease(note, '8n', time);
+		}, [
+		  { time: '0:0', note: 'G3' },
+		  { time: '0:1:2', note: 'A3' },
+		  { time: '0:3', note: 'B3' },
+		  { time: '1:0', note: 'C4' },
+		  { time: '1:1:2', note: 'D4' },
+		  { time: '1:3', note: 'E4' },
+		  { time: '2:0', note: 'F#4' },
+		  { time: '2:1:2', note: 'G4' },
+		  { time: '2:3', note: 'A4' },
+		  { time: '3:0', note: 'B4' },
+		  { time: '3:1:2', note: 'C5' },
+		  { time: '3:3', note: 'D5' },
+		  { time: '4:0', note: 'E5' },
+		  { time: '4:1:2', note: 'F#5' },
+		  { time: '4:3', note: 'G5' },
+		  { time: '5:0', note: 'A5' },
+		  { time: '5:1:2', note: 'B5' },
+		  { time: '5:3', note: 'C6' },
+		  { time: '6:0', note: 'D6' },
+		  { time: '6:1:2', note: 'E6' },
+		  { time: '6:3', note: 'F#6' },
+		  { time: '7:0', note: 'G6' },
+		  { time: '7:1:2', note: 'A6' },
+		  { time: '7:3', note: 'B6' },
+		  { time: '8:0', note: 'C7' },
+		  { time: '8:1:2', note: 'D7' },
+		  { time: '8:3', note: 'E7' },
+		  { time: '9:0', note: 'F#7' },
+		  { time: '9:1:2', note: 'G7' },
+		  { time: '9:3', note: 'A7' },
+		  { time: '10:0', note: 'B7' },
+		  { time: '10:1:2', note: 'C8' },
+		  { time: '10:3', note: 'D8' },
+		]);
+
+		// start the sequence
+		Tone.Transport.bpm.value = 60;
+		sequence.start(0);
+
+		// start the transport
+		//Tone.Transport.start();
+	</script>
+
